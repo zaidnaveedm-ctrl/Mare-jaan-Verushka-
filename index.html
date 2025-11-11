@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Happy Birthday Verushka 💛</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(to bottom, #fff8dc, #ffd700);
+    color: black;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  h1 {
+    font-size: 3em;
+    margin-top: 60px;
+    animation: fadeInDown 2s ease-in-out;
+  }
+
+  p {
+    font-size: 1.2em;
+    margin: 20px auto;
+    max-width: 700px;
+    line-height: 1.6;
+    animation: fadeIn 3s ease-in-out;
+  }
+
+  .countdown {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 30px auto;
+    font-weight: bold;
+  }
+
+  .time-box {
+    background: rgba(255, 255, 255, 0.6);
+    padding: 15px 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
+
+  button {
+    background: gold;
+    color: black;
+    font-weight: bold;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: all 0.3s;
+  }
+
+  button:hover {
+    background: #ffec8b;
+    transform: scale(1.05);
+  }
+
+  @keyframes fadeInDown {
+    from {opacity: 0; transform: translateY(-30px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+
+  /* Floating hearts and sparkles */
+  .heart, .sparkle {
+    position: absolute;
+    animation: floatUp 6s linear infinite;
+    opacity: 0.8;
+  }
+
+  .heart::before {
+    content: "💛";
+    font-size: 24px;
+  }
+
+  .sparkle::before {
+    content: "✨";
+    font-size: 20px;
+  }
+
+  @keyframes floatUp {
+    from {transform: translateY(100vh) scale(1); opacity: 1;}
+    to {transform: translateY(-10vh) scale(0.5); opacity: 0;}
+  }
+</style>
+</head>
+<body>
+  <h1>💛 Happy Birthday, Verushka 💛</h1>
+  <p>A day as golden and beautiful as your heart.  
+  The countdown to your special day begins!</p>
+
+  <div class="countdown">
+    <div class="time-box"><div id="days">0</div>Days</div>
+    <div class="time-box"><div id="hours">0</div>Hours</div>
+    <div class="time-box"><div id="minutes">0</div>Minutes</div>
+    <div class="time-box"><div id="seconds">0</div>Seconds</div>
+  </div>
+
+  <div class="message">
+    <p>
+      My dearest <strong>Verushka</strong>,<br><br>
+      From the moment you stepped into my life, everything changed —  
+      the days grew brighter, smiles came easier, and every heartbeat found  
+      its rhythm in your name. You are my peace, my laughter, and my forever muse.  
+      On your birthday, I just want to remind you how loved, cherished, and  
+      special you are — today and always. 💛<br><br>
+      — <strong>Your Kuchu Puchu Baccha 💋</strong>
+    </p>
+  </div>
+
+  <button id="music-btn">🎶 Play Music</button>
+  <audio id="bg-music" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_3b70b4a93e.mp3?filename=romantic-piano-ambient-110735.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // Countdown timer
+    const countdown = () => {
+      const target = new Date("November 13, 2025 00:00:00").getTime();
+      const now = new Date().getTime();
+      const diff = target - now;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById("days").innerText = days;
+      document.getElementById("hours").innerText = hours;
+      document.getElementById("minutes").innerText = minutes;
+      document.getElementById("seconds").innerText = seconds;
+    };
+    setInterval(countdown, 1000);
+    countdown();
+
+    // Music play/pause
+    const music = document.getElementById("bg-music");
+    const btn = document.getElementById("music-btn");
+    let playing = false;
+
+    btn.addEventListener("click", () => {
+      if (!playing) {
+        music.play();
+        btn.textContent = "⏸ Pause Music";
+      } else {
+        music.pause();
+        btn.textContent = "🎶 Play Music";
+      }
+      playing = !playing;
+    });
+
+    // Floating hearts and sparkles generator
+    function createFloatingEmojis() {
+      const emoji = document.createElement("div");
+      emoji.className = Math.random() > 0.5 ? "heart" : "sparkle";
+      emoji.style.left = Math.random() * 100 + "vw";
+      emoji.style.animationDuration = 4 + Math.random() * 4 + "s";
+      document.body.appendChild(emoji);
+      setTimeout(() => emoji.remove(), 8000);
+    }
+    setInterval(createFloatingEmojis, 500);
+  </script>
+</body>
+</html>
