@@ -5,45 +5,47 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Happy Birthday Verushka 💛</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
   body {
     margin: 0;
-    padding: 0;
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     background: linear-gradient(to bottom, #fff8dc, #ffd700);
     color: black;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+  section {
+    min-height: 100vh;
+    padding: 80px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    overflow: hidden;
   }
-
-  h1 {
-    font-size: 3em;
-    margin-top: 60px;
-    animation: fadeInDown 2s ease-in-out;
+  h1, h2 {
+    margin-bottom: 20px;
   }
-
+  h1 { font-size: 3em; }
+  h2 { font-size: 2em; }
   p {
-    font-size: 1.2em;
-    margin: 20px auto;
     max-width: 700px;
     line-height: 1.6;
-    animation: fadeIn 3s ease-in-out;
+    font-size: 1.1em;
   }
-
   .countdown {
     display: flex;
-    justify-content: center;
     gap: 20px;
+    justify-content: center;
     margin: 30px auto;
-    font-weight: bold;
   }
-
   .time-box {
     background: rgba(255, 255, 255, 0.6);
     padding: 15px 25px;
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    font-weight: bold;
   }
-
   button {
     background: gold;
     color: black;
@@ -56,49 +58,55 @@
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     transition: all 0.3s;
   }
-
   button:hover {
     background: #ffec8b;
     transform: scale(1.05);
   }
 
-  @keyframes fadeInDown {
-    from {opacity: 0; transform: translateY(-30px);}
-    to {opacity: 1; transform: translateY(0);}
-  }
-
-  @keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
-  }
-
-  /* Floating hearts and sparkles */
+  /* Floating emojis */
   .heart, .sparkle {
     position: absolute;
     animation: floatUp 6s linear infinite;
     opacity: 0.8;
   }
-
-  .heart::before {
-    content: "💛";
-    font-size: 24px;
-  }
-
-  .sparkle::before {
-    content: "✨";
-    font-size: 20px;
-  }
-
+  .heart::before { content: "💛"; font-size: 24px; }
+  .sparkle::before { content: "✨"; font-size: 20px; }
   @keyframes floatUp {
     from {transform: translateY(100vh) scale(1); opacity: 1;}
     to {transform: translateY(-10vh) scale(0.5); opacity: 0;}
   }
+
+  /* Fireworks */
+  .firework {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background: gold;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: explode 1.5s ease-out forwards;
+  }
+  @keyframes explode {
+    0% { transform: translate(0,0) scale(1); opacity: 1; }
+    100% { transform: translate(var(--x), var(--y)) scale(0); opacity: 0; }
+  }
+
+  footer {
+    padding: 40px;
+    background: rgba(255,255,255,0.6);
+    font-weight: 600;
+    font-size: 1.2em;
+  }
 </style>
 </head>
 <body>
+
+<!-- Section 1: Hero -->
+<section>
   <h1>💛 Happy Birthday, Verushka 💛</h1>
-  <p>A day as golden and beautiful as your heart.  
-  The countdown to your special day begins!</p>
+  <p>A day as golden and beautiful as your heart.<br>The countdown to your special day begins!</p>
 
   <div class="countdown">
     <div class="time-box"><div id="days">0</div>Days</div>
@@ -107,69 +115,117 @@
     <div class="time-box"><div id="seconds">0</div>Seconds</div>
   </div>
 
-  <div class="message">
-    <p>
-      My dearest <strong>Verushka</strong>,<br><br>
-      From the moment you stepped into my life, everything changed —  
-      the days grew brighter, smiles came easier, and every heartbeat found  
-      its rhythm in your name. You are my peace, my laughter, and my forever muse.  
-      On your birthday, I just want to remind you how loved, cherished, and  
-      special you are — today and always. 💛<br><br>
-      — <strong>Your Kuchu Puchu Baccha 💋</strong>
-    </p>
-  </div>
-
   <button id="music-btn">🎶 Play Music</button>
   <audio id="bg-music" loop>
     <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_3b70b4a93e.mp3?filename=romantic-piano-ambient-110735.mp3" type="audio/mpeg">
   </audio>
+</section>
 
-  <script>
-    // Countdown timer
-    const countdown = () => {
-      const target = new Date("November 13, 2025 00:00:00").getTime();
-      const now = new Date().getTime();
-      const diff = target - now;
+<!-- Section 2: Love Letter -->
+<section style="background: rgba(255,255,255,0.7);">
+  <h2>💌 A Message from Your Kuchu Puchu Baccha 💋</h2>
+  <p>
+    My dearest <strong>Verushka</strong>,<br><br>
+    From the moment you came into my life, every sunrise felt warmer and every laugh sweeter.  
+    You are the calm to my storm, the sparkle in my days, and the heart that beats in rhythm with mine.  
+    On this special day, I just want to remind you: you are magic — pure, kind, and endlessly beautiful.<br><br>
+    Every heartbeat of mine whispers your name.  
+    Today, tomorrow, forever — it's only you, my queen. 👑💛
+  </p>
+</section>
 
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+<!-- Section 3: Why You’re Special -->
+<section>
+  <h2>🌸 Why You’re So Special 🌸</h2>
+  <p>
+    You’re not just beautiful — you’re breathtaking.<br>
+    You’re not just smart — you’re brilliant.<br>
+    You don’t just light up a room — you light up my entire world. 💫<br><br>
+    You make everyone around you smile,  
+    and you’ve given me a reason to believe in love again. 💕  
+    I’m proud of the person you are and grateful for every little moment we share.
+  </p>
+</section>
 
-      document.getElementById("days").innerText = days;
-      document.getElementById("hours").innerText = hours;
-      document.getElementById("minutes").innerText = minutes;
-      document.getElementById("seconds").innerText = seconds;
-    };
-    setInterval(countdown, 1000);
-    countdown();
+<!-- Section 4: Our Little Moments -->
+<section style="background: rgba(255,255,255,0.7);">
+  <h2>💞 Our Little Moments 💞</h2>
+  <p>
+    Every laugh we’ve shared, every late-night talk, every “I love you” whispered in between —  
+    they’re all pieces of our story.  
+    A story I never want to end.  
+    <br><br>
+    Someday, we’ll look back and smile at how it all began —  
+    two souls who found each other and decided to never let go. 💛
+  </p>
+</section>
 
-    // Music play/pause
-    const music = document.getElementById("bg-music");
-    const btn = document.getElementById("music-btn");
-    let playing = false;
+<!-- Section 5: Ending -->
+<footer>
+  Forever yours,<br>
+  <strong>Your Kuchu Puchu Baccha 💋</strong>
+</footer>
 
-    btn.addEventListener("click", () => {
-      if (!playing) {
-        music.play();
-        btn.textContent = "⏸ Pause Music";
-      } else {
-        music.pause();
-        btn.textContent = "🎶 Play Music";
-      }
-      playing = !playing;
-    });
+<script>
+  // Countdown timer
+  function countdown() {
+    const target = new Date("November 13, 2025 00:00:00").getTime();
+    const now = new Date().getTime();
+    const diff = target - now;
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const s = Math.floor((diff % (1000 * 60)) / 1000);
+    document.getElementById("days").innerText = d;
+    document.getElementById("hours").innerText = h;
+    document.getElementById("minutes").innerText = m;
+    document.getElementById("seconds").innerText = s;
 
-    // Floating hearts and sparkles generator
-    function createFloatingEmojis() {
-      const emoji = document.createElement("div");
-      emoji.className = Math.random() > 0.5 ? "heart" : "sparkle";
-      emoji.style.left = Math.random() * 100 + "vw";
-      emoji.style.animationDuration = 4 + Math.random() * 4 + "s";
-      document.body.appendChild(emoji);
-      setTimeout(() => emoji.remove(), 8000);
+    // Launch fireworks when countdown hits 0
+    if (diff <= 0) {
+      for (let i = 0; i < 30; i++) createFirework();
     }
-    setInterval(createFloatingEmojis, 500);
-  </script>
+  }
+  setInterval(countdown, 1000);
+  countdown();
+
+  // Music
+  const music = document.getElementById("bg-music");
+  const btn = document.getElementById("music-btn");
+  let playing = false;
+  btn.addEventListener("click", () => {
+    if (!playing) {
+      music.play();
+      btn.textContent = "⏸ Pause Music";
+    } else {
+      music.pause();
+      btn.textContent = "🎶 Play Music";
+    }
+    playing = !playing;
+  });
+
+  // Floating emojis
+  function createFloatingEmojis() {
+    const emoji = document.createElement("div");
+    emoji.className = Math.random() > 0.5 ? "heart" : "sparkle";
+    emoji.style.left = Math.random() * 100 + "vw";
+    emoji.style.animationDuration = 4 + Math.random() * 4 + "s";
+    document.body.appendChild(emoji);
+    setTimeout(() => emoji.remove(), 8000);
+  }
+  setInterval(createFloatingEmojis, 500);
+
+  // Fireworks
+  function createFirework() {
+    const firework = document.createElement("div");
+    firework.className = "firework";
+    const angle = Math.random() * 2 * Math.PI;
+    const distance = Math.random() * 200 + 100;
+    firework.style.setProperty("--x", `${Math.cos(angle) * distance}px`);
+    firework.style.setProperty("--y", `${Math.sin(angle) * distance}px`);
+    document.body.appendChild(firework);
+    setTimeout(() => firework.remove(), 1500);
+  }
+</script>
 </body>
 </html>
